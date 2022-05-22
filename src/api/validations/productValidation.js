@@ -1,6 +1,6 @@
 const joi = require('joi');
 
-const itemValidation = (item) => {
+const itemValidation = (product) => {
     const schema = joi.object({
         name: joi.string().min(2).max(50).required(),
         category: joi.string().min(2).max(50).required(),
@@ -8,6 +8,7 @@ const itemValidation = (item) => {
         description: joi.string().min(2).max(255),
     }).unknown();
 
-    return schema.validate(item)
+    return schema.validate(product)
 }
-module.exports = itemValidation
+
+module.exports = {itemValidation};
