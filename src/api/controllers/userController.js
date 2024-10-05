@@ -8,8 +8,8 @@ const SALT = process.env.SALT;
 
 // signup
 exports.signUp = async (req, res) => {
-  const { error, value } = userValidation(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  const {  value } = req.body;
+  // if (error) return res.status(400).send(error.details[0].message);
 
   const emailExist = await User.findOne({ email: value.email });
   if (emailExist)
@@ -63,7 +63,7 @@ exports.logIn = async (req, res) => {
 
   //compare valid password with hash
   try {
-    const validPass = await bcrypt.compareSync(
+    const validPass =  bcrypt.compareSync(
       req.body.password,
       emailUser.password
     );
